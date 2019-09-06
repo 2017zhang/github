@@ -76,11 +76,28 @@
 <div class="wp">
     <div class="box box_c size">123123</div>
 </div>
-<p>兼容性也很好，缺点是需要知道子元素的宽高</p>
+<p>Internet Explorer 9 需要前缀 -ms-。</p>
 </div>
 
 <hr>
+<style>
+    .wp_a {
+        position: relative;
+        line-height: 300px;
+        text-align: center;
+        font-size: 0;
+    .box_d {
+      font-size: 16px;
+        display: inline-block;
 
+    }
+</style>
+<h4>四、利用行内元素居中属性也可以做到水平垂直居中</h4>
+<div class="wp_a">
+    <div class="box box_d size">123123</div>
+</div>
+<p>这种方法需要在子元素中将文字显示重置为想要的效果</p>
+</div>
 
 
 </body>
