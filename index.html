@@ -13,19 +13,109 @@
             background: green;
         }
 
-        .box.size{
+        .box.size {
             width: 100px;
             height: 100px;
         }
 
+        .box {
+            width: 100px;
+            height: 100px;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        .course-content table {
+            width: 100%;
+            margin-bottom: 4px;
+            margin-top: 4px;
+        }
+
+        .course-content table tr:nth-child(odd) {
+            background-color: #f6f4f0;
+        }
+
+        .course-content table tr td:first-child {
+            min-width: 25px;
+        }
+
+        .course-content table tr td {
+            line-height: 2em;
+            min-width: 24px;
+            border: 1px solid #d4d4d4;
+            padding: 5px;
+            padding-top: 7px;
+            padding-bottom: 7px;
+            vertical-align: top;
+        }
+
+        img {
+            border: none;
+        }
+
+        .course-content table tr:nth-child(even) {
+            background-color: #fff;
+        }
+
+        .course-content {
+            width: 1000px;
+        }
+
+        .widget-codetool + .hljs, .widget-codetool + pre {
+            margin-top: 0 !important;
+        }
+
+        pre {
+            padding: 1em;
+            border: none;
+            overflow: auto;
+            line-height: 1.45;
+            max-height: 35em;
+            position: relative;
+            background: url(../img/blueprint.png) #F6F6F6;
+            -moz-background-size: 30px, 30px;
+            -o-background-size: 30px, 30px;
+            -webkit-background-size: 30px, 30px;
+            background-size: 30px, 30px;
+        }
+
+        .hljs {
+            display: block;
+            overflow-x: auto;
+            padding: 0.5em;
+            color: #333;
+            background: #f8f8f8;
+        }
+
+        .fmt pre code {
+            background: none;
+            font-size: 1em;
+            overflow-wrap: normal;
+            white-space: inherit;
+        }
+        body{
+            padding-left:40px;
+        }
+        .fmt table th {
+            background: #F3F3F3;
+        }
+        .fmt table th, .fmt table td {
+            border: 1px solid #E6E6E6;
+            padding: 5px 8px;
+            word-break: normal;
+        }
     </style>
 </head>
-<body>
+<div>
 <div>
     <style>
         .wp {
             position: relative;
         }
+
         .box_a {
             position: absolute;;
             top: 50%;
@@ -35,13 +125,39 @@
         }
     </style>
     <h4>一、固定宽高，子元素绝对定位，top、left:50%,margin是负值（元素的宽高的一半）。</h4>
+    <pre class="css hljs">
+    <code class="css">
+         .box_a {
+            position: absolute;;
+            top: 50%;
+            left: 50%;
+            margin-left: -50px;
+            margin-top: -50px;
+        }
+    </code></pre>
     <div class="wp">
         <div class="box box_a size">123123</div>
     </div>
     <p>兼容性也很好，缺点是需要知道子元素的宽高</p>
 
-<hr>
+    <hr>
     <style>
+        .wp {
+            position: relative;
+        }
+
+        .box_b {
+            position: absolute;;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    </style>
+    <h4>二、固定宽高，子元素绝对定位，各个方向的距离都是0，margin设为auto。</h4>
+    <pre class="css hljs">
+    <code class="css">
         .wp {
             position: relative;
         }
@@ -53,8 +169,7 @@
             bottom: 0;
             margin: auto;
         }
-    </style>
-    <h4>二、固定宽高，子元素绝对定位，各个方向的距离都是0，margin设为auto。</h4>
+    </code></pre>
     <div class="wp">
         <div class="box box_b size">123123</div>
     </div>
@@ -65,6 +180,7 @@
     .wp {
         position: relative;
     }
+
     .box_c {
         position: absolute;
         top: 50%;
@@ -73,6 +189,18 @@
     }
 </style>
 <h4>三、子元素不需要固定宽高，子元素绝对定位，transform的translate属性宽高设置为自身的-50%。</h4>
+<pre class="css hljs">
+    <code class="css">
+    .wp {
+        position: relative;
+    }
+    .box_c {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    </code></pre>
 <div class="wp">
     <div class="box box_c size">123123</div>
 </div>
@@ -81,24 +209,313 @@
 
 <hr>
 <style>
-    .wp_a {
-        position: relative;
+    .wp_b {
+        border: 1px solid red;
+        width: 300px;
+        height: 300px;
         line-height: 300px;
         text-align: center;
-        font-size: 0;
+        font-size: 0px;
+    }
+
     .box_d {
-      font-size: 16px;
-        display: inline-block;
+        font-size: 16px;
+        display: inline;
 
     }
 </style>
 <h4>四、利用行内元素居中属性也可以做到水平垂直居中</h4>
-<div class="wp_a">
-    <div class="box box_d size">123123</div>
+<pre>
+<code class="css">
+    .wp_b {
+    border: 1px solid red;
+    width: 300px;
+    height: 300px;
+    line-height: 300px;
+    text-align: center;
+    font-size: 0px;
+    }
+    .box_d {
+    font-size: 16px;
+    display: inline;
+
+    }
+</code></pre>
+<div class="wp_b">
+    <div class="box_d box">123123</div>
 </div>
-<p>这种方法需要在子元素中将文字显示重置为想要的效果</p>
 </div>
 
+<hr>
+
+<style>
+
+    .box_f {
+        position: absolute;;
+        top: calc(50% - 50px);
+        left: calc(50% - 50px);
+    }
+</style>
+<h4>五、居中元素的宽高必须固定，使用绝对定位和计算属性</h4>
+<pre>
+<code class="css">
+ .box_f {
+        position: absolute;;
+        top: calc(50% - 50px);
+        left: calc(50% - 50px);
+    }
+</code></pre>
+<div class="wp ">
+    <div class="box size box_f">123123</div>
+</div>
+<p>这种方法兼容性依赖calc的兼容性，缺点是需要知道子元素的宽高</p>
+<div class="course-content">
+    <table interlaced="enabled">
+        <tbody>
+        <tr class="ue-table-interlace-color-single firstRow">
+            <td style="width: 25%; font-size: 16px; text-align: left; word-break: break-all;">函数</td>
+            <td style="width: 15%; word-break: break-all;" align="center" valign="top"><img
+                    src="https://img.php.cn/upload/image/694/251/670/1546322463316818.gif" title="1546322463316818.gif"
+                    alt="1.gif"></td>
+            <td style="width: 15%;" align="center" valign="top"><img
+                    src="https://img.php.cn/upload/image/912/807/694/1546322467179911.gif" title="1546322467179911.gif"
+                    alt="2.gif"></td>
+            <td style="width: 15%;" align="center" valign="top"><img
+                    src="https://img.php.cn/upload/image/439/419/922/1546322470663741.gif" title="1546322470663741.gif"
+                    alt="3.gif"></td>
+            <td style="width: 15%;" align="center" valign="top"><img
+                    src="https://img.php.cn/upload/image/305/428/459/1546322474991722.gif" title="1546322474991722.gif"
+                    alt="4.gif"></td>
+            <td style="width: 15%;" align="center" valign="top"><img
+                    src="https://img.php.cn/upload/image/863/739/769/1546322488245643.gif" title="1546322488245643.gif"
+                    alt="5.gif"></td>
+        </tr>
+        <tr class="ue-table-interlace-color-double">
+            <td width="116" valign="top" style="word-break: break-all;">calc()</td>
+            <td width="116" valign="top" style="word-break: break-all;" align="center">26.0<br>19.0&nbsp;-webkit-</td>
+            <td width="116" valign="top" style="word-break: break-all;" align="center">9.0</td>
+            <td width="116" valign="top" style="word-break: break-all;" align="center">16.0<br>4.0&nbsp;-moz-</td>
+            <td width="116" valign="top" style="word-break: break-all;" align="center">7.0<br>6.0&nbsp;-webkit-</td>
+            <td width="116" valign="top" style="word-break: break-all;" align="center">15.0</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+<hr>
+
+<style>
+
+    .wp_c {
+        text-align: center;
+    }
+
+    .box_e {
+        display: inline-block;
+    }
+</style>
+<h4>六、曾经table被用来做页面布局，也能够实现水平垂直居中，但是会增加很多冗余代码</h4>
+<pre>
+<code class="css">
+    .wp_c {
+    text-align: center;
+    }
+    .box_e {
+    display: inline-block;
+    }
+</code></pre>
+<table>
+    <tbody>
+    <tr>
+        <td class="wp_c wp">
+            <div class="box_e box">123123</div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p>abel单元格中的内容天然就是垂直居中的，只要添加一个水平居中属性就好了.</p>
+<p>缺点是这种方法就是代码太冗余，而且也不是table的正确用法</p>
+
+</div>
+
+<hr>
+
+<style>
+
+    .wp_g {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .box_g {
+        display: inline-block;
+    }
+</style>
+<h4>七、使用css新增的table属性，把普通元素，变为table元素的现实效果，通过这个特性可以实现水平垂直居中</h4>
+<pre>
+<code class="css">
+  .wp_g {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+    }
+    .box_g {
+        display: inline-block;
+    }
+</code></pre>
+<div class="wp wp_g">
+    <div class="box box_g">123123</div>
+</div>
+<p>这种方法和table一样的原理，但却没有那么多冗余代码，兼容性好</p>
+
+</div>
+
+
+<hr>
+
+<style>
+
+    .wp_h {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+</style>
+<h4>八、flex作为现代的布局方案，只需几行代码就可以优雅的做到水平垂直居中</h4>
+<pre>
+<code class="css">
+  .wp_h {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</code></pre>
+<div class="wp wp_h">
+    <div class="box box_h">123123</div>
+</div>
+<p>目前在移动端已经完全可以使用flex了，PC端老版本会有兼容性情况</p>
+
+</div>
+
+<hr>
+
+<style>
+    .wp_r {
+        display: grid;
+    }
+
+    .box_r {
+        align-self: center;
+        justify-self: center;
+    }
+
+</style>
+<h4>九、grid作为现代的布局方案，只需几行代码就可以优雅的做到水平垂直居中</h4>
+<pre>
+<code class="css">
+    .wp_r {
+    display: grid;
+    }
+
+    .box_r {
+    align-self: center;
+    justify-self: center;
+    }
+</code></pre>
+<div class="wp wp_r">
+    <div class="box box_r">123123</div>
+</div>
+<p>代码量也很少，但兼容性不如flex，不推荐使用</p>
+
+</div>
+
+
+<hr>
+<h4>总结</h4>
+<ul>
+    <li>PC端有兼容性要求，宽高固定，推荐absolute + 负margin</li>
+    <li>PC端有兼容要求，宽高不固定，推荐css-table</li>
+    <li>PC端无兼容性要求，推荐flex</li>
+    <li>移动端推荐使用flex</li>
+</ul>
+
+<br><br><br><br>
+<div class="fmt">
+<table>
+    <thead><tr>
+        <th>方法</th>
+        <th>居中元素定宽高固定</th>
+        <th>PC兼容性</th>
+        <th>移动端兼容性</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+        <td>absolute + 负margin</td>
+        <td>是</td>
+        <td>ie6+, chrome4+, firefox2+</td>
+        <td>安卓2.3+, iOS6+</td>
+    </tr>
+    <tr>
+        <td>absolute + margin auto</td>
+        <td>是</td>
+        <td>ie6+, chrome4+, firefox2+</td>
+        <td>安卓2.3+, iOS6+</td>
+    </tr>
+    <tr>
+        <td>absolute + calc</td>
+        <td>是</td>
+        <td>ie9+, chrome19+, firefox4+</td>
+        <td>安卓4.4+, iOS6+</td>
+    </tr>
+    <tr>
+        <td>absolute + transform</td>
+        <td>否</td>
+        <td>ie9+, chrome4+, firefox3.5+</td>
+        <td>安卓3+, iOS6+</td>
+    </tr>
+    <tr>
+        <td>writing-mode</td>
+        <td>否</td>
+        <td>ie6+, chrome4+, firefox3.5+</td>
+        <td>安卓2.3+, iOS5.1+</td>
+    </tr>
+    <tr>
+        <td>lineheight</td>
+        <td>否</td>
+        <td>ie6+, chrome4+, firefox2+</td>
+        <td>安卓2.3+, iOS6+</td>
+    </tr>
+    <tr>
+        <td>table</td>
+        <td>否</td>
+        <td>ie6+, chrome4+, firefox2+</td>
+        <td>安卓2.3+, iOS6+</td>
+    </tr>
+    <tr>
+        <td>css-table</td>
+        <td>否</td>
+        <td>ie8+, chrome4+, firefox2+</td>
+        <td>安卓2.3+, iOS6+</td>
+    </tr>
+    <tr>
+        <td>flex</td>
+        <td>否</td>
+        <td>ie10+, chrome4+, firefox2+</td>
+        <td>安卓2.3+, iOS6+</td>
+    </tr>
+    <tr>
+        <td>grid</td>
+        <td>否</td>
+        <td>ie10+, chrome57+, firefox52+</td>
+        <td>安卓6+, iOS10.3+</td>
+    </tr>
+    </tbody>
+</table>
+</div>
 
 </body>
 </html>
